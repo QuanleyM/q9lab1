@@ -1,0 +1,1553 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.43 build -156212558 
+                                                                                               Thu Oct 19 18:37:14 2017
+
+Microchip Technology Omniscient Code Generator v1.43 (Free mode) build 201707250354
+     1                           	processor	18F452
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     8                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     9                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+    10                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    20                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    21                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    22  0000                     
+    23                           ; Version 1.43
+    24                           ; Generated 25/07/2017 GMT
+    25                           ; 
+    26                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    27                           ; All rights reserved.
+    28                           ; 
+    29                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    30                           ; 
+    31                           ; Redistribution and use in source and binary forms, with or without modification, are
+    32                           ; permitted provided that the following conditions are met:
+    33                           ; 
+    34                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    35                           ;        conditions and the following disclaimer.
+    36                           ; 
+    37                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    38                           ;        of conditions and the following disclaimer in the documentation and/or other
+    39                           ;        materials provided with the distribution.
+    40                           ; 
+    41                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    42                           ;        software without specific prior written permission.
+    43                           ; 
+    44                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    45                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    46                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    47                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    48                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    49                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    50                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    51                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    52                           ; 
+    53                           ; 
+    54                           ; Code-generator required, PIC18F452 Definitions
+    55                           ; 
+    56                           ; SFR Addresses
+    57  0000                     
+    58                           	psect	idataCOMRAM
+    59  003D44                     __pidataCOMRAM:
+    60                           	opt stack 0
+    61                           
+    62                           ;initializer for _MapName
+    63  003D44  54                 	db	84
+    64  003D45  68                 	db	104
+    65  003D46  65                 	db	101
+    66  003D47  74                 	db	116
+    67  003D48  61                 	db	97
+    68  003D49  4D                 	db	77
+    69  003D4A  61                 	db	97
+    70  003D4B  00                 	db	0
+    71  0000                     _TRISDbits	set	3989
+    72  0000                     _TRISD	set	3989
+    73  0000                     _PORTD	set	3971
+    74  0000                     _LATDbits	set	3980
+    75                           
+    76                           ; #config settings
+    77  0000                     
+    78                           	psect	cinit
+    79  003D96                     __pcinit:
+    80                           	opt stack 0
+    81  003D96                     start_initialization:
+    82                           	opt stack 0
+    83  003D96                     __initialization:
+    84                           	opt stack 0
+    85                           
+    86                           ; Initialize objects allocated to COMRAM (8 bytes)
+    87                           ; load TBLPTR registers with __pidataCOMRAM
+    88  003D96  0E44               	movlw	low __pidataCOMRAM
+    89  003D98  6EF6               	movwf	tblptrl,c
+    90  003D9A  0E3D               	movlw	high __pidataCOMRAM
+    91  003D9C  6EF7               	movwf	tblptrh,c
+    92  003D9E  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+    93  003DA0  6EF8               	movwf	tblptru,c
+    94  003DA2  EE00  F001         	lfsr	0,__pdataCOMRAM
+    95  003DA6  EE10 F008          	lfsr	1,8
+    96  003DAA                     copy_data0:
+    97  003DAA  0009               	tblrd		*+
+    98  003DAC  CFF5 FFEE          	movff	tablat,postinc0
+    99  003DB0  50E5               	movf	postdec1,w,c
+   100  003DB2  50E1               	movf	fsr1l,w,c
+   101  003DB4  E1FA               	bnz	copy_data0
+   102                           
+   103                           ; Clear objects allocated to COMRAM (1 bytes)
+   104  003DB6  6A0C               	clrf	__pbssCOMRAM& (0+255),c
+   105  003DB8                     end_of_initialization:
+   106                           	opt stack 0
+   107  003DB8                     __end_of__initialization:
+   108                           	opt stack 0
+   109  003DB8  0100               	movlb	0
+   110  003DBA  EFBA  F01E         	goto	_main	;jump to C main() function
+   111                           tblptru	equ	0xFF8
+   112                           tblptrh	equ	0xFF7
+   113                           tblptrl	equ	0xFF6
+   114                           tablat	equ	0xFF5
+   115                           postinc0	equ	0xFEE
+   116                           postdec1	equ	0xFE5
+   117                           fsr1l	equ	0xFE1
+   118                           
+   119                           	psect	bssCOMRAM
+   120  00000C                     __pbssCOMRAM:
+   121                           	opt stack 0
+   122  00000C                     _MapIndex:
+   123                           	opt stack 0
+   124  00000C                     	ds	1
+   125                           tblptru	equ	0xFF8
+   126                           tblptrh	equ	0xFF7
+   127                           tblptrl	equ	0xFF6
+   128                           tablat	equ	0xFF5
+   129                           postinc0	equ	0xFEE
+   130                           postdec1	equ	0xFE5
+   131                           fsr1l	equ	0xFE1
+   132                           
+   133                           	psect	dataCOMRAM
+   134  000001                     __pdataCOMRAM:
+   135                           	opt stack 0
+   136  000001                     _MapName:
+   137                           	opt stack 0
+   138  000001                     	ds	8
+   139                           tblptru	equ	0xFF8
+   140                           tblptrh	equ	0xFF7
+   141                           tblptrl	equ	0xFF6
+   142                           tablat	equ	0xFF5
+   143                           postinc0	equ	0xFEE
+   144                           postdec1	equ	0xFE5
+   145                           fsr1l	equ	0xFE1
+   146                           
+   147                           	psect	cstackCOMRAM
+   148  000009                     __pcstackCOMRAM:
+   149                           	opt stack 0
+   150  000009                     ??_DelayPORXLCD:
+   151  000009                     SetDDRamAddr@DDaddr:
+   152                           	opt stack 0
+   153  000009                     WriteCmdXLCD@cmd:
+   154                           	opt stack 0
+   155  000009                     WriteDataXLCD@data:
+   156                           	opt stack 0
+   157                           
+   158                           ; 1 bytes @ 0x0
+   159  000009                     	ds	1
+   160  00000A                     ??_OpenXLCD:
+   161  00000A                     putsXLCD@buffer:
+   162                           	opt stack 0
+   163                           
+   164                           ; 2 bytes @ 0x1
+   165  00000A                     	ds	1
+   166  00000B                     OpenXLCD@lcdtype:
+   167                           	opt stack 0
+   168                           
+   169                           ; 1 bytes @ 0x2
+   170  00000B                     	ds	1
+   171  00000C                     tblptru	equ	0xFF8
+   172                           tblptrh	equ	0xFF7
+   173                           tblptrl	equ	0xFF6
+   174                           tablat	equ	0xFF5
+   175                           postinc0	equ	0xFEE
+   176                           postdec1	equ	0xFE5
+   177                           fsr1l	equ	0xFE1
+   178                           
+   179                           ; 1 bytes @ 0x3
+   180 ;;
+   181 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   182 ;;
+   183 ;; *************** function _main *****************
+   184 ;; Defined at:
+   185 ;;		line 22 in file "lab1asm.c"
+   186 ;; Parameters:    Size  Location     Type
+   187 ;;		None
+   188 ;; Auto vars:     Size  Location     Type
+   189 ;;		None
+   190 ;; Return value:  Size  Location     Type
+   191 ;;                  1    wreg      void 
+   192 ;; Registers used:
+   193 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   194 ;; Tracked objects:
+   195 ;;		On entry : 0/0
+   196 ;;		On exit  : 0/0
+   197 ;;		Unchanged: 0/0
+   198 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   199 ;;      Params:         0       0       0       0       0       0       0
+   200 ;;      Locals:         0       0       0       0       0       0       0
+   201 ;;      Temps:          0       0       0       0       0       0       0
+   202 ;;      Totals:         0       0       0       0       0       0       0
+   203 ;;Total ram usage:        0 bytes
+   204 ;; Hardware stack levels required when called:    4
+   205 ;; This function calls:
+   206 ;;		_BusyXLCD
+   207 ;;		_InitLCD
+   208 ;;		_putsXLCD
+   209 ;; This function is called by:
+   210 ;;		Startup code after reset
+   211 ;; This function uses a non-reentrant model
+   212 ;;
+   213                           
+   214                           	psect	text0
+   215  003D74                     __ptext0:
+   216                           	opt stack 0
+   217  003D74                     _main:
+   218                           	opt stack 0
+   219  003D74  FFFF               	dw	65535	; assembler added errata NOP
+   220                           
+   221                           ;lab1asm.c: 23: InitLCD();
+   222                           
+   223                           ;incstack = 0
+   224  003D76  ECDF  F01E         	call	_InitLCD	;wreg free
+   225  003D7A  FFFF               	dw	65535	; assembler added errata NOP
+   226  003D7C  EC16  F01F         	call	_BusyXLCD	;wreg free
+   227  003D80  0900               	iorlw	0
+   228  003D82  A4D8               	btfss	status,2,c
+   229  003D84  D7FA               	goto	l22
+   230                           
+   231                           ;lab1asm.c: 26: putsXLCD(MapName);
+   232  003D86  0E01               	movlw	low _MapName
+   233  003D88  6E0A               	movwf	putsXLCD@buffer,c
+   234  003D8A  0E00               	movlw	high _MapName
+   235  003D8C  6E0B               	movwf	putsXLCD@buffer+1,c
+   236  003D8E  ECFA  F01E         	call	_putsXLCD	;wreg free
+   237  003D92                     l24:
+   238  003D92  FFFF               	dw	65535	; assembler added errata NOP
+   239  003D94  D7FE               	goto	l24
+   240  003D96                     __end_of_main:
+   241                           	opt stack 0
+   242                           tblptru	equ	0xFF8
+   243                           tblptrh	equ	0xFF7
+   244                           tblptrl	equ	0xFF6
+   245                           tablat	equ	0xFF5
+   246                           postinc0	equ	0xFEE
+   247                           postdec1	equ	0xFE5
+   248                           fsr1l	equ	0xFE1
+   249                           status	equ	0xFD8
+   250                           
+   251 ;; *************** function _putsXLCD *****************
+   252 ;; Defined at:
+   253 ;;		line 189 in file "lcd.c"
+   254 ;; Parameters:    Size  Location     Type
+   255 ;;  buffer          2    1[COMRAM] PTR unsigned char 
+   256 ;;		 -> MapName(8), 
+   257 ;; Auto vars:     Size  Location     Type
+   258 ;;		None
+   259 ;; Return value:  Size  Location     Type
+   260 ;;                  1    wreg      void 
+   261 ;; Registers used:
+   262 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   263 ;; Tracked objects:
+   264 ;;		On entry : 0/0
+   265 ;;		On exit  : 0/0
+   266 ;;		Unchanged: 0/0
+   267 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   268 ;;      Params:         2       0       0       0       0       0       0
+   269 ;;      Locals:         0       0       0       0       0       0       0
+   270 ;;      Temps:          0       0       0       0       0       0       0
+   271 ;;      Totals:         2       0       0       0       0       0       0
+   272 ;;Total ram usage:        2 bytes
+   273 ;; Hardware stack levels used:    1
+   274 ;; Hardware stack levels required when called:    2
+   275 ;; This function calls:
+   276 ;;		_BusyXLCD
+   277 ;;		_WriteDataXLCD
+   278 ;; This function is called by:
+   279 ;;		_main
+   280 ;; This function uses a non-reentrant model
+   281 ;;
+   282                           
+   283                           	psect	text1
+   284  003DF4                     __ptext1:
+   285                           	opt stack 0
+   286  003DF4                     _putsXLCD:
+   287                           	opt stack 0
+   288  003DF4  FFFF               	dw	65535	; assembler added errata NOP
+   289                           
+   290                           ;lcd.c: 191: while(*buffer)
+   291                           
+   292                           ;incstack = 0
+   293  003DF6  D00F               	goto	l108
+   294  003DF8  FFFF               	dw	65535	; assembler added errata NOP
+   295                           
+   296                           ;lcd.c: 192: {
+   297                           ;lcd.c: 193: while(BusyXLCD());
+   298  003DFA  EC16  F01F         	call	_BusyXLCD	;wreg free
+   299  003DFE  0900               	iorlw	0
+   300  003E00  A4D8               	btfss	status,2,c
+   301  003E02  D7FA               	goto	l109
+   302                           
+   303                           ;lcd.c: 194: WriteDataXLCD(*buffer);
+   304  003E04  C00A  FFD9         	movff	putsXLCD@buffer,fsr2l
+   305  003E08  C00B  FFDA         	movff	putsXLCD@buffer+1,fsr2h
+   306  003E0C  50DF               	movf	indf2,w,c
+   307  003E0E  EC58  F01F         	call	_WriteDataXLCD
+   308                           
+   309                           ;lcd.c: 195: buffer++;
+   310  003E12  4A0A               	infsnz	putsXLCD@buffer,f,c
+   311  003E14  2A0B               	incf	putsXLCD@buffer+1,f,c
+   312  003E16                     l108:
+   313  003E16  FFFF               	dw	65535	; assembler added errata NOP
+   314  003E18  C00A  FFD9         	movff	putsXLCD@buffer,fsr2l
+   315  003E1C  C00B  FFDA         	movff	putsXLCD@buffer+1,fsr2h
+   316  003E20  50DF               	movf	indf2,w,c
+   317  003E22  B4D8               	btfsc	status,2,c
+   318                           
+   319                           ;lcd.c: 196: }
+   320                           ;lcd.c: 197: return;
+   321  003E24  0012               	return		;funcret
+   322  003E26  FFFF               	dw	65535	; assembler added errata NOP
+   323  003E28  D7E7               	goto	l109
+   324  003E2A  FFFF               	dw	65535	; errata NOP
+   325  003E2C                     __end_of_putsXLCD:
+   326                           	opt stack 0
+   327                           tblptru	equ	0xFF8
+   328                           tblptrh	equ	0xFF7
+   329                           tblptrl	equ	0xFF6
+   330                           tablat	equ	0xFF5
+   331                           postinc0	equ	0xFEE
+   332                           postdec1	equ	0xFE5
+   333                           fsr1l	equ	0xFE1
+   334                           indf2	equ	0xFDF
+   335                           fsr2h	equ	0xFDA
+   336                           fsr2l	equ	0xFD9
+   337                           status	equ	0xFD8
+   338                           
+   339 ;; *************** function _WriteDataXLCD *****************
+   340 ;; Defined at:
+   341 ;;		line 521 in file "lcd.c"
+   342 ;; Parameters:    Size  Location     Type
+   343 ;;  data            1    wreg     unsigned char 
+   344 ;; Auto vars:     Size  Location     Type
+   345 ;;  data            1    0[COMRAM] unsigned char 
+   346 ;; Return value:  Size  Location     Type
+   347 ;;                  1    wreg      void 
+   348 ;; Registers used:
+   349 ;;		wreg, status,2, status,0, cstack
+   350 ;; Tracked objects:
+   351 ;;		On entry : 0/0
+   352 ;;		On exit  : 0/0
+   353 ;;		Unchanged: 0/0
+   354 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   355 ;;      Params:         0       0       0       0       0       0       0
+   356 ;;      Locals:         1       0       0       0       0       0       0
+   357 ;;      Temps:          0       0       0       0       0       0       0
+   358 ;;      Totals:         1       0       0       0       0       0       0
+   359 ;;Total ram usage:        1 bytes
+   360 ;; Hardware stack levels used:    1
+   361 ;; Hardware stack levels required when called:    1
+   362 ;; This function calls:
+   363 ;;		_DelayFor18TCY
+   364 ;; This function is called by:
+   365 ;;		_putsXLCD
+   366 ;;		_putrsXLCD
+   367 ;; This function uses a non-reentrant model
+   368 ;;
+   369                           
+   370                           	psect	text2
+   371  003EB0                     __ptext2:
+   372                           	opt stack 0
+   373  003EB0                     _WriteDataXLCD:
+   374                           	opt stack 0
+   375  003EB0  FFFF               	dw	65535	; assembler added errata NOP
+   376                           
+   377                           ;incstack = 0
+   378                           ;WriteDataXLCD@data stored from wreg
+   379  003EB2  6E09               	movwf	WriteDataXLCD@data,c
+   380                           
+   381                           ;lcd.c: 536: TRISD &= 0x0f;
+   382  003EB4  0E0F               	movlw	15
+   383  003EB6  1695               	andwf	3989,f,c	;volatile
+   384                           
+   385                           ;lcd.c: 537: PORTD &= 0x0f;
+   386  003EB8  0E0F               	movlw	15
+   387  003EBA  1683               	andwf	3971,f,c	;volatile
+   388                           
+   389                           ;lcd.c: 538: PORTD |= data&0xf0;
+   390  003EBC  5009               	movf	WriteDataXLCD@data,w,c
+   391  003EBE  0BF0               	andlw	240
+   392  003EC0  1283               	iorwf	3971,f,c	;volatile
+   393                           
+   394                           ;lcd.c: 544: LATDbits.LATD1 = 1;
+   395  003EC2  828C               	bsf	3980,1,c	;volatile
+   396                           
+   397                           ;lcd.c: 545: LATDbits.LATD2 = 0;
+   398  003EC4  948C               	bcf	3980,2,c	;volatile
+   399                           
+   400                           ;lcd.c: 546: DelayFor18TCY();
+   401  003EC6  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   402                           
+   403                           ;lcd.c: 547: LATDbits.LATD0 = 1;
+   404  003ECA  808C               	bsf	3980,0,c	;volatile
+   405                           
+   406                           ;lcd.c: 548: DelayFor18TCY();
+   407  003ECC  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   408                           
+   409                           ;lcd.c: 549: LATDbits.LATD0 = 0;
+   410  003ED0  908C               	bcf	3980,0,c	;volatile
+   411                           
+   412                           ;lcd.c: 551: PORTD &= 0x0f;
+   413  003ED2  0E0F               	movlw	15
+   414  003ED4  1683               	andwf	3971,f,c	;volatile
+   415                           
+   416                           ;lcd.c: 552: PORTD |= ((data<<4)&0xf0);
+   417  003ED6  3809               	swapf	WriteDataXLCD@data,w,c
+   418  003ED8  0BF0               	andlw	240
+   419  003EDA  0BF0               	andlw	240
+   420  003EDC  1283               	iorwf	3971,f,c	;volatile
+   421                           
+   422                           ;lcd.c: 557: DelayFor18TCY();
+   423  003EDE  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   424                           
+   425                           ;lcd.c: 558: LATDbits.LATD0 = 1;
+   426  003EE2  808C               	bsf	3980,0,c	;volatile
+   427                           
+   428                           ;lcd.c: 559: DelayFor18TCY();
+   429  003EE4  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   430                           
+   431                           ;lcd.c: 560: LATDbits.LATD0 = 0;
+   432  003EE8  908C               	bcf	3980,0,c	;volatile
+   433                           
+   434                           ;lcd.c: 562: TRISD |= 0xf0;
+   435  003EEA  0EF0               	movlw	240
+   436  003EEC  1295               	iorwf	3989,f,c	;volatile
+   437                           
+   438                           ;lcd.c: 567: return;
+   439  003EEE  0012               	return		;funcret
+   440  003EF0  FFFF               	dw	65535	; errata NOP
+   441  003EF2                     __end_of_WriteDataXLCD:
+   442                           	opt stack 0
+   443                           tblptru	equ	0xFF8
+   444                           tblptrh	equ	0xFF7
+   445                           tblptrl	equ	0xFF6
+   446                           tablat	equ	0xFF5
+   447                           postinc0	equ	0xFEE
+   448                           postdec1	equ	0xFE5
+   449                           fsr1l	equ	0xFE1
+   450                           indf2	equ	0xFDF
+   451                           fsr2h	equ	0xFDA
+   452                           fsr2l	equ	0xFD9
+   453                           status	equ	0xFD8
+   454                           
+   455 ;; *************** function _InitLCD *****************
+   456 ;; Defined at:
+   457 ;;		line 30 in file "lab1asm.c"
+   458 ;; Parameters:    Size  Location     Type
+   459 ;;		None
+   460 ;; Auto vars:     Size  Location     Type
+   461 ;;		None
+   462 ;; Return value:  Size  Location     Type
+   463 ;;                  1    wreg      void 
+   464 ;; Registers used:
+   465 ;;		wreg, status,2, status,0, cstack
+   466 ;; Tracked objects:
+   467 ;;		On entry : 0/0
+   468 ;;		On exit  : 0/0
+   469 ;;		Unchanged: 0/0
+   470 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   471 ;;      Params:         0       0       0       0       0       0       0
+   472 ;;      Locals:         0       0       0       0       0       0       0
+   473 ;;      Temps:          0       0       0       0       0       0       0
+   474 ;;      Totals:         0       0       0       0       0       0       0
+   475 ;;Total ram usage:        0 bytes
+   476 ;; Hardware stack levels used:    1
+   477 ;; Hardware stack levels required when called:    3
+   478 ;; This function calls:
+   479 ;;		_BusyXLCD
+   480 ;;		_OpenXLCD
+   481 ;;		_SetDDRamAddr
+   482 ;;		_WriteCmdXLCD
+   483 ;; This function is called by:
+   484 ;;		_main
+   485 ;; This function uses a non-reentrant model
+   486 ;;
+   487                           
+   488                           	psect	text3
+   489  003DBE                     __ptext3:
+   490                           	opt stack 0
+   491  003DBE                     _InitLCD:
+   492                           	opt stack 0
+   493  003DBE  FFFF               	dw	65535	; assembler added errata NOP
+   494                           
+   495                           ;lab1asm.c: 31: OpenXLCD(0b00101100 & 0b00111000);
+   496                           
+   497                           ;incstack = 0
+   498  003DC0  0E28               	movlw	40
+   499  003DC2  EC9B  F01F         	call	_OpenXLCD
+   500  003DC6  FFFF               	dw	65535	; assembler added errata NOP
+   501  003DC8  EC16  F01F         	call	_BusyXLCD	;wreg free
+   502  003DCC  0900               	iorlw	0
+   503  003DCE  A4D8               	btfss	status,2,c
+   504  003DD0  D7FA               	goto	l31
+   505                           
+   506                           ;lab1asm.c: 34: SetDDRamAddr(0x40);
+   507  003DD2  0E40               	movlw	64
+   508  003DD4  EC79  F01F         	call	_SetDDRamAddr
+   509                           
+   510                           ;lab1asm.c: 35: WriteCmdXLCD(0b00000110);
+   511  003DD8  0E06               	movlw	6
+   512  003DDA  EC37  F01F         	call	_WriteCmdXLCD
+   513  003DDE  FFFF               	dw	65535	; assembler added errata NOP
+   514  003DE0  EC16  F01F         	call	_BusyXLCD	;wreg free
+   515  003DE4  0900               	iorlw	0
+   516  003DE6  A4D8               	btfss	status,2,c
+   517  003DE8  D7FA               	goto	l34
+   518                           
+   519                           ;lab1asm.c: 37: WriteCmdXLCD(0b00001110);
+   520  003DEA  0E0E               	movlw	14
+   521  003DEC  EC37  F01F         	call	_WriteCmdXLCD
+   522  003DF0  0012               	return		;funcret
+   523  003DF2  FFFF               	dw	65535	; errata NOP
+   524  003DF4                     __end_of_InitLCD:
+   525                           	opt stack 0
+   526                           tblptru	equ	0xFF8
+   527                           tblptrh	equ	0xFF7
+   528                           tblptrl	equ	0xFF6
+   529                           tablat	equ	0xFF5
+   530                           postinc0	equ	0xFEE
+   531                           postdec1	equ	0xFE5
+   532                           fsr1l	equ	0xFE1
+   533                           indf2	equ	0xFDF
+   534                           fsr2h	equ	0xFDA
+   535                           fsr2l	equ	0xFD9
+   536                           status	equ	0xFD8
+   537                           
+   538 ;; *************** function _OpenXLCD *****************
+   539 ;; Defined at:
+   540 ;;		line 80 in file "lcd.c"
+   541 ;; Parameters:    Size  Location     Type
+   542 ;;  lcdtype         1    wreg     unsigned char 
+   543 ;; Auto vars:     Size  Location     Type
+   544 ;;  lcdtype         1    2[COMRAM] unsigned char 
+   545 ;; Return value:  Size  Location     Type
+   546 ;;                  1    wreg      void 
+   547 ;; Registers used:
+   548 ;;		wreg, status,2, status,0, cstack
+   549 ;; Tracked objects:
+   550 ;;		On entry : 0/0
+   551 ;;		On exit  : 0/0
+   552 ;;		Unchanged: 0/0
+   553 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   554 ;;      Params:         0       0       0       0       0       0       0
+   555 ;;      Locals:         1       0       0       0       0       0       0
+   556 ;;      Temps:          1       0       0       0       0       0       0
+   557 ;;      Totals:         2       0       0       0       0       0       0
+   558 ;;Total ram usage:        2 bytes
+   559 ;; Hardware stack levels used:    1
+   560 ;; Hardware stack levels required when called:    2
+   561 ;; This function calls:
+   562 ;;		_BusyXLCD
+   563 ;;		_DelayPORXLCD
+   564 ;;		_SetDDRamAddr
+   565 ;;		_WriteCmdXLCD
+   566 ;; This function is called by:
+   567 ;;		_InitLCD
+   568 ;; This function uses a non-reentrant model
+   569 ;;
+   570                           
+   571                           	psect	text4
+   572  003F36                     __ptext4:
+   573                           	opt stack 0
+   574  003F36                     _OpenXLCD:
+   575                           	opt stack 0
+   576  003F36  FFFF               	dw	65535	; assembler added errata NOP
+   577                           
+   578                           ;incstack = 0
+   579                           ;OpenXLCD@lcdtype stored from wreg
+   580  003F38  6E0B               	movwf	OpenXLCD@lcdtype,c
+   581                           
+   582                           ;lcd.c: 89: PORTD &= 0x0f;
+   583  003F3A  0E0F               	movlw	15
+   584  003F3C  1683               	andwf	3971,f,c	;volatile
+   585                           
+   586                           ;lcd.c: 90: TRISD &= 0x0F;
+   587  003F3E  0E0F               	movlw	15
+   588  003F40  1695               	andwf	3989,f,c	;volatile
+   589                           
+   590                           ;lcd.c: 96: TRISDbits.TRISD2 = 0;
+   591  003F42  9495               	bcf	3989,2,c	;volatile
+   592                           
+   593                           ;lcd.c: 97: TRISDbits.TRISD1 = 0;
+   594  003F44  9295               	bcf	3989,1,c	;volatile
+   595                           
+   596                           ;lcd.c: 98: TRISDbits.TRISD0 = 0;
+   597  003F46  9095               	bcf	3989,0,c	;volatile
+   598                           
+   599                           ;lcd.c: 99: LATDbits.LATD2 = 0;
+   600  003F48  948C               	bcf	3980,2,c	;volatile
+   601                           
+   602                           ;lcd.c: 100: LATDbits.LATD1 = 0;
+   603  003F4A  928C               	bcf	3980,1,c	;volatile
+   604                           
+   605                           ;lcd.c: 101: LATDbits.LATD0 = 0;
+   606  003F4C  908C               	bcf	3980,0,c	;volatile
+   607                           
+   608                           ;lcd.c: 104: DelayPORXLCD();
+   609  003F4E  ECAF  F01E         	call	_DelayPORXLCD	;wreg free
+   610                           
+   611                           ;lcd.c: 106: WriteCmdXLCD(0x30);
+   612  003F52  0E30               	movlw	48
+   613  003F54  EC37  F01F         	call	_WriteCmdXLCD
+   614                           
+   615                           ;lcd.c: 108: _delay((unsigned long)((50)*(4000000/4000.0)));
+   616  003F58  0E31               	movlw	49
+   617  003F5A  6E0A               	movwf	??_OpenXLCD& (0+255),c
+   618  003F5C  0EBB               	movlw	187
+   619  003F5E                     u197:
+   620  003F5E  FFFF               	dw	65535	; errata NOP
+   621  003F60  2EE8               	decfsz	wreg,f,c
+   622  003F62  D7FD               	bra	u197
+   623  003F64  2E0A               	decfsz	??_OpenXLCD& (0+255),f,c
+   624  003F66  D7FB               	bra	u197
+   625                           
+   626                           ;lcd.c: 110: WriteCmdXLCD(0x30);
+   627  003F68  0E30               	movlw	48
+   628  003F6A  EC37  F01F         	call	_WriteCmdXLCD
+   629                           
+   630                           ;lcd.c: 112: _delay((unsigned long)((50)*(4000000/4000.0)));
+   631  003F6E  0E31               	movlw	49
+   632  003F70  6E0A               	movwf	??_OpenXLCD& (0+255),c
+   633  003F72  0EBB               	movlw	187
+   634  003F74                     u207:
+   635  003F74  FFFF               	dw	65535	; errata NOP
+   636  003F76  2EE8               	decfsz	wreg,f,c
+   637  003F78  D7FD               	bra	u207
+   638  003F7A  2E0A               	decfsz	??_OpenXLCD& (0+255),f,c
+   639  003F7C  D7FB               	bra	u207
+   640                           
+   641                           ;lcd.c: 114: WriteCmdXLCD(0x32);
+   642  003F7E  0E32               	movlw	50
+   643  003F80  EC37  F01F         	call	_WriteCmdXLCD
+   644  003F84  FFFF               	dw	65535	; assembler added errata NOP
+   645  003F86  EC16  F01F         	call	_BusyXLCD	;wreg free
+   646  003F8A  0900               	iorlw	0
+   647  003F8C  A4D8               	btfss	status,2,c
+   648  003F8E  D7FA               	goto	l76
+   649  003F90                     u20:
+   650  003F90  FFFF               	dw	65535	; assembler added errata NOP
+   651                           
+   652                           ;lcd.c: 120: while(BusyXLCD());
+   653  003F92  EC16  F01F         	call	_BusyXLCD	;wreg free
+   654  003F96  0900               	iorlw	0
+   655  003F98  A4D8               	btfss	status,2,c
+   656  003F9A  D7FA               	goto	u20
+   657                           
+   658                           ;lcd.c: 121: WriteCmdXLCD(lcdtype);
+   659  003F9C  500B               	movf	OpenXLCD@lcdtype,w,c
+   660  003F9E  EC37  F01F         	call	_WriteCmdXLCD
+   661  003FA2  FFFF               	dw	65535	; assembler added errata NOP
+   662  003FA4  EC16  F01F         	call	_BusyXLCD	;wreg free
+   663  003FA8  0900               	iorlw	0
+   664  003FAA  A4D8               	btfss	status,2,c
+   665  003FAC  D7FA               	goto	l82
+   666                           
+   667                           ;lcd.c: 125: WriteCmdXLCD(0b00001011&0b00001101&0b00001110);
+   668  003FAE  0E08               	movlw	8
+   669  003FB0  EC37  F01F         	call	_WriteCmdXLCD
+   670  003FB4  FFFF               	dw	65535	; assembler added errata NOP
+   671  003FB6  EC16  F01F         	call	_BusyXLCD	;wreg free
+   672  003FBA  0900               	iorlw	0
+   673  003FBC  A4D8               	btfss	status,2,c
+   674  003FBE  D7FA               	goto	l85
+   675                           
+   676                           ;lcd.c: 127: WriteCmdXLCD(0b00001111&0b00001111&0b00001111);
+   677  003FC0  0E0F               	movlw	15
+   678  003FC2  EC37  F01F         	call	_WriteCmdXLCD
+   679  003FC6  FFFF               	dw	65535	; assembler added errata NOP
+   680  003FC8  EC16  F01F         	call	_BusyXLCD	;wreg free
+   681  003FCC  0900               	iorlw	0
+   682  003FCE  A4D8               	btfss	status,2,c
+   683  003FD0  D7FA               	goto	l88
+   684                           
+   685                           ;lcd.c: 131: WriteCmdXLCD(0x01);
+   686  003FD2  0E01               	movlw	1
+   687  003FD4  EC37  F01F         	call	_WriteCmdXLCD
+   688  003FD8  FFFF               	dw	65535	; assembler added errata NOP
+   689  003FDA  EC16  F01F         	call	_BusyXLCD	;wreg free
+   690  003FDE  0900               	iorlw	0
+   691  003FE0  A4D8               	btfss	status,2,c
+   692  003FE2  D7FA               	goto	l91
+   693                           
+   694                           ;lcd.c: 135: WriteCmdXLCD(0b00000100);
+   695  003FE4  0E04               	movlw	4
+   696  003FE6  EC37  F01F         	call	_WriteCmdXLCD
+   697  003FEA  FFFF               	dw	65535	; assembler added errata NOP
+   698  003FEC  EC16  F01F         	call	_BusyXLCD	;wreg free
+   699  003FF0  0900               	iorlw	0
+   700  003FF2  A4D8               	btfss	status,2,c
+   701  003FF4  D7FA               	goto	l94
+   702                           
+   703                           ;lcd.c: 139: SetDDRamAddr(0x80);
+   704  003FF6  0E80               	movlw	128
+   705  003FF8  EC79  F01F         	call	_SetDDRamAddr
+   706                           
+   707                           ;lcd.c: 141: return;
+   708  003FFC  0012               	return		;funcret
+   709  003FFE  FFFF               	dw	65535	; errata NOP
+   710  004000                     __end_of_OpenXLCD:
+   711                           	opt stack 0
+   712                           tblptru	equ	0xFF8
+   713                           tblptrh	equ	0xFF7
+   714                           tblptrl	equ	0xFF6
+   715                           tablat	equ	0xFF5
+   716                           postinc0	equ	0xFEE
+   717                           wreg	equ	0xFE8
+   718                           postdec1	equ	0xFE5
+   719                           fsr1l	equ	0xFE1
+   720                           indf2	equ	0xFDF
+   721                           fsr2h	equ	0xFDA
+   722                           fsr2l	equ	0xFD9
+   723                           status	equ	0xFD8
+   724                           
+   725 ;; *************** function _WriteCmdXLCD *****************
+   726 ;; Defined at:
+   727 ;;		line 455 in file "lcd.c"
+   728 ;; Parameters:    Size  Location     Type
+   729 ;;  cmd             1    wreg     unsigned char 
+   730 ;; Auto vars:     Size  Location     Type
+   731 ;;  cmd             1    0[COMRAM] unsigned char 
+   732 ;; Return value:  Size  Location     Type
+   733 ;;                  1    wreg      void 
+   734 ;; Registers used:
+   735 ;;		wreg, status,2, status,0, cstack
+   736 ;; Tracked objects:
+   737 ;;		On entry : 0/0
+   738 ;;		On exit  : 0/0
+   739 ;;		Unchanged: 0/0
+   740 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   741 ;;      Params:         0       0       0       0       0       0       0
+   742 ;;      Locals:         1       0       0       0       0       0       0
+   743 ;;      Temps:          0       0       0       0       0       0       0
+   744 ;;      Totals:         1       0       0       0       0       0       0
+   745 ;;Total ram usage:        1 bytes
+   746 ;; Hardware stack levels used:    1
+   747 ;; Hardware stack levels required when called:    1
+   748 ;; This function calls:
+   749 ;;		_DelayFor18TCY
+   750 ;; This function is called by:
+   751 ;;		_InitLCD
+   752 ;;		_OpenXLCD
+   753 ;; This function uses a non-reentrant model
+   754 ;;
+   755                           
+   756                           	psect	text5
+   757  003E6E                     __ptext5:
+   758                           	opt stack 0
+   759  003E6E                     _WriteCmdXLCD:
+   760                           	opt stack 0
+   761  003E6E  FFFF               	dw	65535	; assembler added errata NOP
+   762                           
+   763                           ;incstack = 0
+   764                           ;WriteCmdXLCD@cmd stored from wreg
+   765  003E70  6E09               	movwf	WriteCmdXLCD@cmd,c
+   766                           
+   767                           ;lcd.c: 470: TRISD &= 0x0f;
+   768  003E72  0E0F               	movlw	15
+   769  003E74  1695               	andwf	3989,f,c	;volatile
+   770                           
+   771                           ;lcd.c: 471: PORTD &= 0x0f;
+   772  003E76  0E0F               	movlw	15
+   773  003E78  1683               	andwf	3971,f,c	;volatile
+   774                           
+   775                           ;lcd.c: 472: PORTD |= cmd&0xf0;
+   776  003E7A  5009               	movf	WriteCmdXLCD@cmd,w,c
+   777  003E7C  0BF0               	andlw	240
+   778  003E7E  1283               	iorwf	3971,f,c	;volatile
+   779                           
+   780                           ;lcd.c: 478: LATDbits.LATD2 = 0;
+   781  003E80  948C               	bcf	3980,2,c	;volatile
+   782                           
+   783                           ;lcd.c: 479: LATDbits.LATD1 = 0;
+   784  003E82  928C               	bcf	3980,1,c	;volatile
+   785                           
+   786                           ;lcd.c: 480: DelayFor18TCY();
+   787  003E84  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   788                           
+   789                           ;lcd.c: 481: LATDbits.LATD0 = 1;
+   790  003E88  808C               	bsf	3980,0,c	;volatile
+   791                           
+   792                           ;lcd.c: 482: DelayFor18TCY();
+   793  003E8A  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   794                           
+   795                           ;lcd.c: 483: LATDbits.LATD0 = 0;
+   796  003E8E  908C               	bcf	3980,0,c	;volatile
+   797                           
+   798                           ;lcd.c: 485: PORTD &= 0x0f;
+   799  003E90  0E0F               	movlw	15
+   800  003E92  1683               	andwf	3971,f,c	;volatile
+   801                           
+   802                           ;lcd.c: 486: PORTD |= (cmd<<4)&0xf0;
+   803  003E94  3809               	swapf	WriteCmdXLCD@cmd,w,c
+   804  003E96  0BF0               	andlw	240
+   805  003E98  0BF0               	andlw	240
+   806  003E9A  1283               	iorwf	3971,f,c	;volatile
+   807                           
+   808                           ;lcd.c: 491: DelayFor18TCY();
+   809  003E9C  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   810                           
+   811                           ;lcd.c: 492: LATDbits.LATD0 = 1;
+   812  003EA0  808C               	bsf	3980,0,c	;volatile
+   813                           
+   814                           ;lcd.c: 493: DelayFor18TCY();
+   815  003EA2  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   816                           
+   817                           ;lcd.c: 494: LATDbits.LATD0 = 0;
+   818  003EA6  908C               	bcf	3980,0,c	;volatile
+   819                           
+   820                           ;lcd.c: 496: TRISD |= 0xf0;
+   821  003EA8  0EF0               	movlw	240
+   822  003EAA  1295               	iorwf	3989,f,c	;volatile
+   823                           
+   824                           ;lcd.c: 501: return;
+   825  003EAC  0012               	return		;funcret
+   826  003EAE  FFFF               	dw	65535	; errata NOP
+   827  003EB0                     __end_of_WriteCmdXLCD:
+   828                           	opt stack 0
+   829                           tblptru	equ	0xFF8
+   830                           tblptrh	equ	0xFF7
+   831                           tblptrl	equ	0xFF6
+   832                           tablat	equ	0xFF5
+   833                           postinc0	equ	0xFEE
+   834                           wreg	equ	0xFE8
+   835                           postdec1	equ	0xFE5
+   836                           fsr1l	equ	0xFE1
+   837                           indf2	equ	0xFDF
+   838                           fsr2h	equ	0xFDA
+   839                           fsr2l	equ	0xFD9
+   840                           status	equ	0xFD8
+   841                           
+   842 ;; *************** function _SetDDRamAddr *****************
+   843 ;; Defined at:
+   844 ;;		line 392 in file "lcd.c"
+   845 ;; Parameters:    Size  Location     Type
+   846 ;;  DDaddr          1    wreg     unsigned char 
+   847 ;; Auto vars:     Size  Location     Type
+   848 ;;  DDaddr          1    0[COMRAM] unsigned char 
+   849 ;; Return value:  Size  Location     Type
+   850 ;;                  1    wreg      void 
+   851 ;; Registers used:
+   852 ;;		wreg, status,2, status,0, cstack
+   853 ;; Tracked objects:
+   854 ;;		On entry : 0/0
+   855 ;;		On exit  : 0/0
+   856 ;;		Unchanged: 0/0
+   857 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   858 ;;      Params:         0       0       0       0       0       0       0
+   859 ;;      Locals:         1       0       0       0       0       0       0
+   860 ;;      Temps:          0       0       0       0       0       0       0
+   861 ;;      Totals:         1       0       0       0       0       0       0
+   862 ;;Total ram usage:        1 bytes
+   863 ;; Hardware stack levels used:    1
+   864 ;; Hardware stack levels required when called:    1
+   865 ;; This function calls:
+   866 ;;		_DelayFor18TCY
+   867 ;; This function is called by:
+   868 ;;		_InitLCD
+   869 ;;		_OpenXLCD
+   870 ;; This function uses a non-reentrant model
+   871 ;;
+   872                           
+   873                           	psect	text6
+   874  003EF2                     __ptext6:
+   875                           	opt stack 0
+   876  003EF2                     _SetDDRamAddr:
+   877                           	opt stack 0
+   878  003EF2  FFFF               	dw	65535	; assembler added errata NOP
+   879                           
+   880                           ;incstack = 0
+   881                           ;SetDDRamAddr@DDaddr stored from wreg
+   882  003EF4  6E09               	movwf	SetDDRamAddr@DDaddr,c
+   883                           
+   884                           ;lcd.c: 407: TRISD &= 0x0f;
+   885  003EF6  0E0F               	movlw	15
+   886  003EF8  1695               	andwf	3989,f,c	;volatile
+   887                           
+   888                           ;lcd.c: 408: PORTD &= 0x0f;
+   889  003EFA  0E0F               	movlw	15
+   890  003EFC  1683               	andwf	3971,f,c	;volatile
+   891                           
+   892                           ;lcd.c: 409: PORTD |= ((DDaddr | 0b10000000) & 0xf0);
+   893  003EFE  5009               	movf	SetDDRamAddr@DDaddr,w,c
+   894  003F00  0980               	iorlw	128
+   895  003F02  0BF0               	andlw	240
+   896  003F04  1283               	iorwf	3971,f,c	;volatile
+   897                           
+   898                           ;lcd.c: 415: LATDbits.LATD2 = 0;
+   899  003F06  948C               	bcf	3980,2,c	;volatile
+   900                           
+   901                           ;lcd.c: 416: LATDbits.LATD1 = 0;
+   902  003F08  928C               	bcf	3980,1,c	;volatile
+   903                           
+   904                           ;lcd.c: 417: DelayFor18TCY();
+   905  003F0A  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   906                           
+   907                           ;lcd.c: 418: LATDbits.LATD0 = 1;
+   908  003F0E  808C               	bsf	3980,0,c	;volatile
+   909                           
+   910                           ;lcd.c: 419: DelayFor18TCY();
+   911  003F10  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   912                           
+   913                           ;lcd.c: 420: LATDbits.LATD0 = 0;
+   914  003F14  908C               	bcf	3980,0,c	;volatile
+   915                           
+   916                           ;lcd.c: 422: PORTD &= 0x0f;
+   917  003F16  0E0F               	movlw	15
+   918  003F18  1683               	andwf	3971,f,c	;volatile
+   919                           
+   920                           ;lcd.c: 423: PORTD |= ((DDaddr<<4)&0xf0);
+   921  003F1A  3809               	swapf	SetDDRamAddr@DDaddr,w,c
+   922  003F1C  0BF0               	andlw	240
+   923  003F1E  0BF0               	andlw	240
+   924  003F20  1283               	iorwf	3971,f,c	;volatile
+   925                           
+   926                           ;lcd.c: 428: DelayFor18TCY();
+   927  003F22  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   928                           
+   929                           ;lcd.c: 429: LATDbits.LATD0 = 1;
+   930  003F26  808C               	bsf	3980,0,c	;volatile
+   931                           
+   932                           ;lcd.c: 430: DelayFor18TCY();
+   933  003F28  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+   934                           
+   935                           ;lcd.c: 431: LATDbits.LATD0 = 0;
+   936  003F2C  908C               	bcf	3980,0,c	;volatile
+   937                           
+   938                           ;lcd.c: 433: TRISD |= 0xf0;
+   939  003F2E  0EF0               	movlw	240
+   940  003F30  1295               	iorwf	3989,f,c	;volatile
+   941                           
+   942                           ;lcd.c: 438: return;
+   943  003F32  0012               	return		;funcret
+   944  003F34  FFFF               	dw	65535	; errata NOP
+   945  003F36                     __end_of_SetDDRamAddr:
+   946                           	opt stack 0
+   947                           tblptru	equ	0xFF8
+   948                           tblptrh	equ	0xFF7
+   949                           tblptrl	equ	0xFF6
+   950                           tablat	equ	0xFF5
+   951                           postinc0	equ	0xFEE
+   952                           wreg	equ	0xFE8
+   953                           postdec1	equ	0xFE5
+   954                           fsr1l	equ	0xFE1
+   955                           indf2	equ	0xFDF
+   956                           fsr2h	equ	0xFDA
+   957                           fsr2l	equ	0xFD9
+   958                           status	equ	0xFD8
+   959                           
+   960 ;; *************** function _DelayPORXLCD *****************
+   961 ;; Defined at:
+   962 ;;		line 13 in file "lab1_lcdfunctions.c"
+   963 ;; Parameters:    Size  Location     Type
+   964 ;;		None
+   965 ;; Auto vars:     Size  Location     Type
+   966 ;;		None
+   967 ;; Return value:  Size  Location     Type
+   968 ;;                  1    wreg      void 
+   969 ;; Registers used:
+   970 ;;		wreg
+   971 ;; Tracked objects:
+   972 ;;		On entry : 0/0
+   973 ;;		On exit  : 0/0
+   974 ;;		Unchanged: 0/0
+   975 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   976 ;;      Params:         0       0       0       0       0       0       0
+   977 ;;      Locals:         0       0       0       0       0       0       0
+   978 ;;      Temps:          1       0       0       0       0       0       0
+   979 ;;      Totals:         1       0       0       0       0       0       0
+   980 ;;Total ram usage:        1 bytes
+   981 ;; Hardware stack levels used:    1
+   982 ;; This function calls:
+   983 ;;		Nothing
+   984 ;; This function is called by:
+   985 ;;		_OpenXLCD
+   986 ;; This function uses a non-reentrant model
+   987 ;;
+   988                           
+   989                           	psect	text7
+   990  003D5E                     __ptext7:
+   991                           	opt stack 0
+   992  003D5E                     _DelayPORXLCD:
+   993                           	opt stack 0
+   994  003D5E  FFFF               	dw	65535	; assembler added errata NOP
+   995                           
+   996                           ;lab1_lcdfunctions.c: 14: _delay((unsigned long)((15)*(4000000/4000.0)));
+   997                           
+   998                           ;incstack = 0
+   999  003D60  0E0F               	movlw	15
+  1000  003D62  6E09               	movwf	??_DelayPORXLCD& (0+255),c
+  1001  003D64  0E9E               	movlw	158
+  1002  003D66                     u217:
+  1003  003D66  FFFF               	dw	65535	; errata NOP
+  1004  003D68  2EE8               	decfsz	wreg,f,c
+  1005  003D6A  D7FD               	bra	u217
+  1006  003D6C  2E09               	decfsz	??_DelayPORXLCD& (0+255),f,c
+  1007  003D6E  D7FB               	bra	u217
+  1008  003D70  0012               	return		;funcret
+  1009  003D72  FFFF               	dw	65535	; errata NOP
+  1010  003D74                     __end_of_DelayPORXLCD:
+  1011                           	opt stack 0
+  1012                           tblptru	equ	0xFF8
+  1013                           tblptrh	equ	0xFF7
+  1014                           tblptrl	equ	0xFF6
+  1015                           tablat	equ	0xFF5
+  1016                           postinc0	equ	0xFEE
+  1017                           wreg	equ	0xFE8
+  1018                           postdec1	equ	0xFE5
+  1019                           fsr1l	equ	0xFE1
+  1020                           indf2	equ	0xFDF
+  1021                           fsr2h	equ	0xFDA
+  1022                           fsr2l	equ	0xFD9
+  1023                           status	equ	0xFD8
+  1024                           
+  1025 ;; *************** function _BusyXLCD *****************
+  1026 ;; Defined at:
+  1027 ;;		line 12 in file "lcd.c"
+  1028 ;; Parameters:    Size  Location     Type
+  1029 ;;		None
+  1030 ;; Auto vars:     Size  Location     Type
+  1031 ;;		None
+  1032 ;; Return value:  Size  Location     Type
+  1033 ;;                  1    wreg      unsigned char 
+  1034 ;; Registers used:
+  1035 ;;		wreg, cstack
+  1036 ;; Tracked objects:
+  1037 ;;		On entry : 0/0
+  1038 ;;		On exit  : 0/0
+  1039 ;;		Unchanged: 0/0
+  1040 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1041 ;;      Params:         0       0       0       0       0       0       0
+  1042 ;;      Locals:         0       0       0       0       0       0       0
+  1043 ;;      Temps:          0       0       0       0       0       0       0
+  1044 ;;      Totals:         0       0       0       0       0       0       0
+  1045 ;;Total ram usage:        0 bytes
+  1046 ;; Hardware stack levels used:    1
+  1047 ;; Hardware stack levels required when called:    1
+  1048 ;; This function calls:
+  1049 ;;		_DelayFor18TCY
+  1050 ;; This function is called by:
+  1051 ;;		_main
+  1052 ;;		_InitLCD
+  1053 ;;		_OpenXLCD
+  1054 ;;		_putsXLCD
+  1055 ;;		_putrsXLCD
+  1056 ;; This function uses a non-reentrant model
+  1057 ;;
+  1058                           
+  1059                           	psect	text8
+  1060  003E2C                     __ptext8:
+  1061                           	opt stack 0
+  1062  003E2C                     _BusyXLCD:
+  1063                           	opt stack 0
+  1064  003E2C  FFFF               	dw	65535	; assembler added errata NOP
+  1065                           
+  1066                           ;lcd.c: 14: LATDbits.LATD2 = 1;
+  1067                           
+  1068                           ;incstack = 0
+  1069  003E2E  848C               	bsf	3980,2,c	;volatile
+  1070                           
+  1071                           ;lcd.c: 15: LATDbits.LATD1 = 0;
+  1072  003E30  928C               	bcf	3980,1,c	;volatile
+  1073                           
+  1074                           ;lcd.c: 16: DelayFor18TCY();
+  1075  003E32  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+  1076                           
+  1077                           ;lcd.c: 17: LATDbits.LATD0 = 1;
+  1078  003E36  808C               	bsf	3980,0,c	;volatile
+  1079                           
+  1080                           ;lcd.c: 18: DelayFor18TCY();
+  1081  003E38  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+  1082                           
+  1083                           ;lcd.c: 34: if(PORTD&0x80)
+  1084  003E3C  AE83               	btfss	3971,7,c	;volatile
+  1085  003E3E  D00A               	goto	l70
+  1086                           
+  1087                           ;lcd.c: 38: {
+  1088                           ;lcd.c: 39: LATDbits.LATD0 = 0;
+  1089  003E40  908C               	bcf	3980,0,c	;volatile
+  1090                           
+  1091                           ;lcd.c: 40: DelayFor18TCY();
+  1092  003E42  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+  1093                           
+  1094                           ;lcd.c: 41: LATDbits.LATD0 = 1;
+  1095  003E46  808C               	bsf	3980,0,c	;volatile
+  1096                           
+  1097                           ;lcd.c: 42: DelayFor18TCY();
+  1098  003E48  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+  1099                           
+  1100                           ;lcd.c: 43: LATDbits.LATD0 = 0;
+  1101  003E4C  908C               	bcf	3980,0,c	;volatile
+  1102                           
+  1103                           ;lcd.c: 44: LATDbits.LATD2 = 0;
+  1104  003E4E  948C               	bcf	3980,2,c	;volatile
+  1105                           
+  1106                           ;lcd.c: 45: return 1;
+  1107  003E50  0E01               	movlw	1
+  1108                           
+  1109                           ;lcd.c: 46: }
+  1110  003E52  D00A               	goto	l790
+  1111  003E54                     l70:
+  1112  003E54  FFFF               	dw	65535	; assembler added errata NOP
+  1113                           
+  1114                           ;lcd.c: 47: else
+  1115                           ;lcd.c: 48: {
+  1116                           ;lcd.c: 49: LATDbits.LATD0 = 0;
+  1117  003E56  908C               	bcf	3980,0,c	;volatile
+  1118                           
+  1119                           ;lcd.c: 50: DelayFor18TCY();
+  1120  003E58  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+  1121                           
+  1122                           ;lcd.c: 51: LATDbits.LATD0 = 1;
+  1123  003E5C  808C               	bsf	3980,0,c	;volatile
+  1124                           
+  1125                           ;lcd.c: 52: DelayFor18TCY();
+  1126  003E5E  ECA6  F01E         	call	_DelayFor18TCY	;wreg free
+  1127                           
+  1128                           ;lcd.c: 53: LATDbits.LATD0 = 0;
+  1129  003E62  908C               	bcf	3980,0,c	;volatile
+  1130                           
+  1131                           ;lcd.c: 54: LATDbits.LATD2 = 0;
+  1132  003E64  948C               	bcf	3980,2,c	;volatile
+  1133                           
+  1134                           ;lcd.c: 55: return 0;
+  1135  003E66  0E00               	movlw	0
+  1136  003E68                     l790:
+  1137  003E68  FFFF               	dw	65535	; assembler added errata NOP
+  1138  003E6A  0012               	return		;funcret
+  1139  003E6C  FFFF               	dw	65535	; errata NOP
+  1140  003E6E                     __end_of_BusyXLCD:
+  1141                           	opt stack 0
+  1142                           tblptru	equ	0xFF8
+  1143                           tblptrh	equ	0xFF7
+  1144                           tblptrl	equ	0xFF6
+  1145                           tablat	equ	0xFF5
+  1146                           postinc0	equ	0xFEE
+  1147                           wreg	equ	0xFE8
+  1148                           postdec1	equ	0xFE5
+  1149                           fsr1l	equ	0xFE1
+  1150                           indf2	equ	0xFDF
+  1151                           fsr2h	equ	0xFDA
+  1152                           fsr2l	equ	0xFD9
+  1153                           status	equ	0xFD8
+  1154                           
+  1155 ;; *************** function _DelayFor18TCY *****************
+  1156 ;; Defined at:
+  1157 ;;		line 9 in file "lab1_lcdfunctions.c"
+  1158 ;; Parameters:    Size  Location     Type
+  1159 ;;		None
+  1160 ;; Auto vars:     Size  Location     Type
+  1161 ;;		None
+  1162 ;; Return value:  Size  Location     Type
+  1163 ;;                  1    wreg      void 
+  1164 ;; Registers used:
+  1165 ;;		wreg
+  1166 ;; Tracked objects:
+  1167 ;;		On entry : 0/0
+  1168 ;;		On exit  : 0/0
+  1169 ;;		Unchanged: 0/0
+  1170 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1171 ;;      Params:         0       0       0       0       0       0       0
+  1172 ;;      Locals:         0       0       0       0       0       0       0
+  1173 ;;      Temps:          0       0       0       0       0       0       0
+  1174 ;;      Totals:         0       0       0       0       0       0       0
+  1175 ;;Total ram usage:        0 bytes
+  1176 ;; Hardware stack levels used:    1
+  1177 ;; This function calls:
+  1178 ;;		Nothing
+  1179 ;; This function is called by:
+  1180 ;;		_BusyXLCD
+  1181 ;;		_SetDDRamAddr
+  1182 ;;		_WriteCmdXLCD
+  1183 ;;		_WriteDataXLCD
+  1184 ;;		_ReadAddrXLCD
+  1185 ;;		_ReadDataXLCD
+  1186 ;;		_SetCGRamAddr
+  1187 ;; This function uses a non-reentrant model
+  1188 ;;
+  1189                           
+  1190                           	psect	text9
+  1191  003D4C                     __ptext9:
+  1192                           	opt stack 0
+  1193  003D4C                     _DelayFor18TCY:
+  1194                           	opt stack 0
+  1195  003D4C  FFFF               	dw	65535	; assembler added errata NOP
+  1196                           
+  1197                           ;lab1_lcdfunctions.c: 10: _delay(18);
+  1198                           
+  1199                           ;incstack = 0
+  1200  003D4E  0E04               	movlw	4
+  1201  003D50                     u227:
+  1202  003D50  FFFF               	dw	65535	; errata NOP
+  1203  003D52  2EE8               	decfsz	wreg,f,c
+  1204  003D54  D7FD               	bra	u227
+  1205  003D56  D000               	nop2	
+  1206  003D58  0012               	return		;funcret
+  1207  003D5A  FFFF               	dw	65535	; errata NOP
+  1208  003D5C                     __end_of_DelayFor18TCY:
+  1209                           	opt stack 0
+  1210  003D5C  FFFF               	dw	65535	; assembler added errata NOP
+  1211                           tblptru	equ	0xFF8
+  1212                           tblptrh	equ	0xFF7
+  1213                           tblptrl	equ	0xFF6
+  1214                           tablat	equ	0xFF5
+  1215                           postinc0	equ	0xFEE
+  1216                           wreg	equ	0xFE8
+  1217                           postdec1	equ	0xFE5
+  1218                           fsr1l	equ	0xFE1
+  1219                           indf2	equ	0xFDF
+  1220                           fsr2h	equ	0xFDA
+  1221                           fsr2l	equ	0xFD9
+  1222                           status	equ	0xFD8
+  1223                           tblptru	equ	0xFF8
+  1224                           tblptrh	equ	0xFF7
+  1225                           tblptrl	equ	0xFF6
+  1226                           tablat	equ	0xFF5
+  1227                           postinc0	equ	0xFEE
+  1228                           wreg	equ	0xFE8
+  1229                           postdec1	equ	0xFE5
+  1230                           fsr1l	equ	0xFE1
+  1231                           indf2	equ	0xFDF
+  1232                           fsr2h	equ	0xFDA
+  1233                           fsr2l	equ	0xFD9
+  1234                           status	equ	0xFD8
+  1235                           
+  1236                           	psect	rparam
+  1237  0000                     tblptru	equ	0xFF8
+  1238                           tblptrh	equ	0xFF7
+  1239                           tblptrl	equ	0xFF6
+  1240                           tablat	equ	0xFF5
+  1241                           postinc0	equ	0xFEE
+  1242                           wreg	equ	0xFE8
+  1243                           postdec1	equ	0xFE5
+  1244                           fsr1l	equ	0xFE1
+  1245                           indf2	equ	0xFDF
+  1246                           fsr2h	equ	0xFDA
+  1247                           fsr2l	equ	0xFD9
+  1248                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        8
+    BSS         1
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM          127      3      12
+    BANK0           128      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+
+Pointer List with Targets:
+
+    putsXLCD@buffer	PTR unsigned char  size(2) Largest target is 8
+		 -> MapName(COMRAM[8]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_putsXLCD
+    _putsXLCD->_WriteDataXLCD
+    _InitLCD->_OpenXLCD
+    _OpenXLCD->_DelayPORXLCD
+    _OpenXLCD->_SetDDRamAddr
+    _OpenXLCD->_WriteCmdXLCD
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     286
+                           _BusyXLCD
+                            _InitLCD
+                           _putsXLCD
+ ---------------------------------------------------------------------------------
+ (1) _putsXLCD                                             2     0      2     151
+                                              1 COMRAM     2     0      2
+                           _BusyXLCD
+                      _WriteDataXLCD
+ ---------------------------------------------------------------------------------
+ (2) _WriteDataXLCD                                        1     1      0      30
+                                              0 COMRAM     1     1      0
+                      _DelayFor18TCY
+ ---------------------------------------------------------------------------------
+ (1) _InitLCD                                              0     0      0     135
+                           _BusyXLCD
+                           _OpenXLCD
+                       _SetDDRamAddr
+                       _WriteCmdXLCD
+ ---------------------------------------------------------------------------------
+ (2) _OpenXLCD                                             2     2      0      75
+                                              1 COMRAM     2     2      0
+                           _BusyXLCD
+                       _DelayPORXLCD
+                       _SetDDRamAddr
+                       _WriteCmdXLCD
+ ---------------------------------------------------------------------------------
+ (2) _WriteCmdXLCD                                         1     1      0      30
+                                              0 COMRAM     1     1      0
+                      _DelayFor18TCY
+ ---------------------------------------------------------------------------------
+ (2) _SetDDRamAddr                                         1     1      0      30
+                                              0 COMRAM     1     1      0
+                      _DelayFor18TCY
+ ---------------------------------------------------------------------------------
+ (3) _DelayPORXLCD                                         1     1      0       0
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (2) _BusyXLCD                                             0     0      0       0
+                      _DelayFor18TCY
+ ---------------------------------------------------------------------------------
+ (3) _DelayFor18TCY                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _BusyXLCD
+     _DelayFor18TCY
+   _InitLCD
+     _BusyXLCD
+       _DelayFor18TCY
+     _OpenXLCD
+       _BusyXLCD
+         _DelayFor18TCY
+       _DelayPORXLCD
+       _SetDDRamAddr
+         _DelayFor18TCY
+       _WriteCmdXLCD
+         _DelayFor18TCY
+     _SetDDRamAddr
+       _DelayFor18TCY
+     _WriteCmdXLCD
+       _DelayFor18TCY
+   _putsXLCD
+     _BusyXLCD
+       _DelayFor18TCY
+     _WriteDataXLCD
+       _DelayFor18TCY
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             5FF      0       0      17        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK5           100      0       0      16        0.0%
+BANK5              100      0       0      14        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80      0       0       5        0.0%
+BITCOMRAM           7F      0       0       0        0.0%
+COMRAM              7F      3       C       1        9.4%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0       C      15        0.0%
+DATA                 0      0       C       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.43 build -156212558 
+Symbol Table                                                                                   Thu Oct 19 18:37:14 2017
+
+                                                         l22 3D7A  
+                                                         l31 3DC6  
+                                                         l24 3D92  
+                                                         l34 3DDE  
+                                                         l70 3E54  
+                                                         l82 3FA2  
+                                                         l91 3FD8  
+                                                         l76 3F84  
+                                                         l85 3FB4  
+                                                         l94 3FEA  
+                                                         l88 3FC6  
+                                                         u20 3F90  
+                                                __CFG_OSC$HS 000000  
+                                                        l108 3E16  
+                                                        l109 3DF8  
+                                                        l790 3E68  
+                                                        u207 3F74  
+                                                        u217 3D66  
+                                                        u227 3D50  
+                                                        u197 3F5E  
+                                      __size_of_WriteCmdXLCD 0042  
+                                                        wreg 000FE8  
+                                               __CFG_LVP$OFF 000000  
+                                               __CFG_WDT$OFF 000000  
+                                                       _main 3D74  
+                                                       fsr2h 000FDA  
+                                                       indf2 000FDF  
+                                                       fsr1l 000FE1  
+                                                       fsr2l 000FD9  
+                                     __size_of_WriteDataXLCD 0042  
+                                                       start 0002  
+                                               ___param_bank 000000  
+                                            __end_of_InitLCD 3DF4  
+                                               _WriteCmdXLCD 3E6E  
+                                              ?_SetDDRamAddr 0009  
+                                                      ?_main 0009  
+                                                      _PORTD 000F83  
+                                                      _TRISD 000F95  
+                                                      tablat 000FF5  
+                                                      status 000FD8  
+                                            __initialization 3D96  
+                                               __end_of_main 3D96  
+                                           __end_of_BusyXLCD 3E6E  
+                                      __size_of_DelayPORXLCD 0016  
+                                             ??_SetDDRamAddr 0009  
+                                           __end_of_OpenXLCD 4000  
+                                                     ??_main 000C  
+                                              __activetblptr 000000  
+                                              _WriteDataXLCD 3EB0  
+                                                  ??_InitLCD 000C  
+                                               _DelayPORXLCD 3D5E  
+                                             ?_WriteDataXLCD 0009  
+                                               __pdataCOMRAM 0001  
+                                                     tblptrh 000FF7  
+                                                     tblptrl 000FF6  
+                                                     tblptru 000FF8  
+                                           __end_of_putsXLCD 3E2C  
+                                                 __accesstop 0080  
+                                    __end_of__initialization 3DB8  
+                                              ___rparam_used 000001  
+                                             __pcstackCOMRAM 0009  
+                                     __size_of_DelayFor18TCY 0010  
+                                                  ?_BusyXLCD 0009  
+                                            WriteCmdXLCD@cmd 0009  
+                                       __end_of_SetDDRamAddr 3F36  
+                                                  ?_OpenXLCD 0009  
+                                          WriteDataXLCD@data 0009  
+                                            ??_WriteDataXLCD 0009  
+                                                 ??_BusyXLCD 0009  
+                                                    _MapName 0001  
+                                                    _InitLCD 3DBE  
+                                                 ??_OpenXLCD 000A  
+                                                    __Hparam 0000  
+                                                    __Lparam 0000  
+                                              _DelayFor18TCY 3D4C  
+                                                  ?_putsXLCD 000A  
+                                                    __pcinit 3D96  
+                                                    __ramtop 0600  
+                                                    __ptext0 3D74  
+                                                    __ptext1 3DF4  
+                                                    __ptext2 3EB0  
+                                                    __ptext3 3DBE  
+                                                    __ptext4 3F36  
+                                                    __ptext5 3E6E  
+                                                    __ptext6 3EF2  
+                                                    __ptext7 3D5E  
+                                                    __ptext8 3E2C  
+                                                    __ptext9 3D4C  
+                                       end_of_initialization 3DB8  
+                                             ?_DelayFor18TCY 0009  
+                                                    postdec1 000FE5  
+                                                    postinc0 000FEE  
+                                                 ??_putsXLCD 000C  
+                                                  _TRISDbits 000F95  
+                                      __size_of_SetDDRamAddr 0044  
+                                              __pidataCOMRAM 3D44  
+                                               _SetDDRamAddr 3EF2  
+                                         SetDDRamAddr@DDaddr 0009  
+                                        start_initialization 3D96  
+                                          __size_of_BusyXLCD 0042  
+                                            ??_DelayFor18TCY 0009  
+                                          __size_of_OpenXLCD 00CA  
+                                              ?_WriteCmdXLCD 0009  
+                                                __pbssCOMRAM 000C  
+                                                   ?_InitLCD 0009  
+                                             putsXLCD@buffer 000A  
+                                             ??_WriteCmdXLCD 0009  
+                                          __size_of_putsXLCD 0038  
+                                      __end_of_WriteDataXLCD 3EF2  
+                                                   _LATDbits 000F8C  
+                                              ?_DelayPORXLCD 0009  
+                                            OpenXLCD@lcdtype 000B  
+                                                   _MapIndex 000C  
+                                                  copy_data0 3DAA  
+                                                   _BusyXLCD 3E2C  
+                                             ??_DelayPORXLCD 0009  
+                                                   _OpenXLCD 3F36  
+                                           __size_of_InitLCD 0036  
+                                                   __Hrparam 0000  
+                                                   __Lrparam 0000  
+                                       __end_of_WriteCmdXLCD 3EB0  
+                                              __size_of_main 0022  
+                                                   _putsXLCD 3DF4  
+                                      __end_of_DelayFor18TCY 3D5C  
+                                       __end_of_DelayPORXLCD 3D74  
